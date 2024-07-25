@@ -1,0 +1,13 @@
+/* Partners.css */
+@keyframes templates-partner-moving-right {
+    0% {
+        transform: translateX(-4505px);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-slide-right {
+    animation: 13.2249s linear 0s infinite normal none running templates-partner-moving-right;
+}
