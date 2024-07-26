@@ -12,12 +12,179 @@ import cardGreen from '../../images/card-green.svg';
 import ethereum from '../../images/ethereum.svg';
 import usdt from '../../images/usdt.svg';
 import usdc from '../../images/usdc-36x36.svg';
+import Timer from './timer';
 
 const Home = () => {
     const [showModal, setShowModal] = useState('false')
-    const [showModal2, setShowModal2] = useState('false')
+    const [data, setData] = useState(null)
+    const [date, setDate] = useState(null)
+    const [anime, setAnime] = useState(false)
+    const [fullDate, setFullDate] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
+    const [fullDateEnd, setFullDateEnd] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
     const [style, setStyle] = useState({ backgroundColor: 'rgb(0, 112, 58)' });
 
+    function formatNumberWithCommas(number) {
+        return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    function fetchDataAndUpdate() {
+        const url = "https://corsproxy.io/?" + encodeURIComponent("https://poodlana.com/api/trpc/getState");
+        fetch(url)
+            .then((response) => response.json())
+            .then((data) => {
+                setData(data.result.data)
+                setDate(data.result.data.nextIncreaseTime)
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+            });
+    }
+
+    function setCountdown(targetDateString) {
+        const countDownDate = new Date(targetDateString).getTime() + 10800000;
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            if (distance < 0) {
+                clearInterval(intervalId);
+
+                // Set the new target date one week ahead
+                var newTargetDate = new Date(countDownDate);
+                newTargetDate.setDate(newTargetDate.getDate() + 7);
+                var newTargetDateString = newTargetDate.toISOString().slice(0, 19);
+                setCountdown(newTargetDateString);
+            } else {
+                setFullDate({
+                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                    seconds: Math.floor((distance % (1000 * 60)) / 1000)
+                });
+                setAnime(!anime)
+            }
+        }
+
+        updateCountdown();
+        const intervalId = setInterval(updateCountdown, 1000);
+    }
+    function setCountdown2(targetDateString) {
+        const countDownDate = new Date(targetDateString).getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            if (distance < 0) {
+                clearInterval(intervalId);
+
+                // Set the new target date one week ahead
+                var newTargetDate = new Date(countDownDate);
+                newTargetDate.setDate(newTargetDate.getDate() + 7);
+                var newTargetDateString = newTargetDate.toISOString().slice(0, 19);
+                setCountdown(newTargetDateString);
+            } else {
+                setFullDateEnd({
+                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
+                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+                    seconds: Math.floor((distance % (1000 * 60)) / 1000)
+                });
+            }
+        }
+        updateCountdown();
+        const intervalId = setInterval(updateCountdown, 1000);
+    }
+    const apiKey = "acdc58e4-982c-4baa-b802-c967a607f563";
+
+    // Функція для перекладу тексту через DeepL
+    async function translateText(texts, targetLang) {
+        const params = new URLSearchParams();
+        params.append("auth_key", apiKey);
+        texts.forEach((text) => params.append("text", text));
+        params.append("target_lang", targetLang);
+        params.append("preserve_formatting", true);
+
+        const response = await fetch("https://api.deepl.com/v2/translate", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: params.toString(),
+        });
+
+        const data = await response.json();
+
+        if (data && data.translations) {
+            return data.translations.map((translation) => translation.text);
+        } else {
+            throw new Error("Translation failed");
+        }
+    }
+
+    // Функція для перекладу всіх елементів з атрибутом translate
+    async function translateElements(targetLang) {
+        const elements = document.querySelectorAll("[translate]");
+        const textsToTranslate = [];
+        const originalTexts = [];
+
+        for (let element of elements) {
+            const originalText = element.getAttribute("data-original-text");
+            if (targetLang === "en") {
+                // Повертаємо оригінальний текст
+                if (originalText) {
+                    element.textContent = originalText;
+                }
+            } else {
+                // Зберігаємо оригінальний текст, якщо ще не збережено
+                if (!originalText) {
+                    element.setAttribute("data-original-text", element.textContent.trim());
+                }
+                const textToTranslate = element.textContent.trim();
+                if (textToTranslate) {
+                    originalTexts.push(originalText || textToTranslate);
+                    textsToTranslate.push(textToTranslate);
+                }
+            }
+        }
+
+        if (textsToTranslate.length > 0) {
+            try {
+                const translatedTexts = await translateText(textsToTranslate, targetLang);
+                elements.forEach((element, index) => {
+                    if (targetLang !== "en") {
+                        element.textContent = translatedTexts[index];
+                    }
+                });
+            } catch (error) {
+                console.error("Translation error:", error.message);
+            }
+        }
+    }
+    function getValidLanguageCode(code) {
+        let returnValue = "en"; // Default value
+
+        if (code === "cz") {
+            translateElements("cs");
+            returnValue = "cs";
+        } else if (code === "kr") {
+            translateElements("ko");
+            returnValue = "ko";
+        } else if (code === "ch") {
+            translateElements("zh");
+            returnValue = "zh";
+        } else {
+            translateElements(code);
+            // For the default case, `code` is used directly
+            returnValue = code;
+        }
+
+        // Set cookie with the return value
+        document.cookie = `lang=${returnValue}; path=/`;
+
+        return returnValue;
+    }
     useEffect(() => {
         const colors = [
             { backgroundColor: 'rgb(169, 197, 0)' },
@@ -45,6 +212,8 @@ const Home = () => {
 
         let index = 0;
 
+        setInterval(fetchDataAndUpdate(), 60000);
+
         const interval = setInterval(() => {
             setStyle(colors[index]);
             index = (index + 1) % colors.length;
@@ -52,6 +221,20 @@ const Home = () => {
 
         return () => clearInterval(interval); // Clean up the interval on component unmount
     }, []);
+
+    useEffect(() => {
+        if (data) {
+            setCountdown(date)
+            setCountdown2('2024-08-16 14:00:00')
+        }
+    }, [data]);
+
+
+    const formatNumber = (num) => {
+        let prevNum = num
+        return num < 10 ? `0${num}` : `${num}`;
+    };
+
     return (
         <div id="home" className="overflow-hidden relative z-[5] bg-primary max-lg:bg-black text-white pt-[74px] max-lg:pt-[64px] lg:min-h-[900px] lg:h-[100vh] lg:max-h-[1000px] mt-[-3px]">
             <video className="absolute bottom-0 left-0 w-full h-full object-cover max-lg:h-[720px] max-lg:top-[64px] max-lg:bottom-auto z-[0]" poster="/images/video-poster.jpg" autoPlay loop muted playsInline preload="true">
@@ -72,22 +255,22 @@ const Home = () => {
                     <div className="mt-[10px] max-md:mt-[0px] w-full max-md:flex max-md:justify-center">
                         <div className="flex text-[40px] max-md:w-[80vw] max-md:text-[35px] gap-[20px] leading-none max-lg:mt-2 font-libreBodoni items-center">
                             <div className="max-md:w-1/4 max-md:items-center text-center items-end flex justify-center gap-1 max-md:flex-col">
-                                <div className="flex-grow flex justify-center">21</div>
+                                <div className="flex-grow flex justify-center">{fullDateEnd.days}</div>
                                 <span className="text-white/70 font-poppins max-md:text-white text-sm font-light uppercase italic">days</span>
                             </div>
                             <span className="text-white/35 font-poppins text-sm font-light lg:hidden">/</span>
                             <div className="max-md:w-1/4 max-md:items-center items-end text-center flex justify-center gap-1 max-md:flex-col">
-                                <div className="flex-grow font-libreBodoni flex justify-center">22</div>
+                                <div className="flex-grow font-libreBodoni flex justify-center">{fullDateEnd.hours}</div>
                                 <span className="text-white/70 font-poppins max-md:text-white text-sm font-light uppercase italic">hrs</span>
                             </div>
                             <span className="text-white/35 font-poppins text-sm font-light lg:hidden">/</span>
                             <div className="max-md:w-1/4 max-md:items-center text-center flex items-end justify-center gap-1 max-md:flex-col">
-                                <div className="flex-grow font-libreBodoni flex justify-center">25</div>
+                                <div className="flex-grow font-libreBodoni flex justify-center">{fullDateEnd.minutes}</div>
                                 <span className="text-white/70 max-md:text-white font-poppins text-sm font-light uppercase italic">mins</span>
                             </div>
                             <span className="text-white/35 font-poppins text-sm font-light lg:hidden">/</span>
                             <div className="max-md:w-1/4 max-md:items-center text-center flex items-end justify-center gap-1 max-md:flex-col">
-                                <div className="flex-grow font-libreBodoni flex justify-center">18</div>
+                                <div className="flex-grow font-libreBodoni flex justify-center">{fullDateEnd.seconds}</div>
                                 <span className="text-white/70 font-poppins max-md:text-white text-sm font-light uppercase italic">secs</span>
                             </div>
                         </div>
@@ -107,7 +290,7 @@ const Home = () => {
                         <div className="flex items-center h-[58px] bg-black text-white px-6 uppercase text-[28px] font-bold italic max-lg:text-[23px]">
                             <p className="h-[1px] bg-white flex-1"></p>
                             <div className="mx-5">
-                                <span>$2,805,316.81</span>&nbsp;Raised
+                                <span>${data ? formatNumberWithCommas(data.totalSoldUSD) : '$2, 930, 667.52'}</span>&nbsp;Raised
                             </div>
                             <p className="h-[1px] bg-white flex-1"></p>
                         </div>
@@ -118,31 +301,16 @@ const Home = () => {
                                 </div>
                                 <div className="flex flex-col">
                                     <div className="flex justify-center w-full text-[40px] max-md:text-[35px] leading-none max-lg:mt-2">
-                                        <div className="w-1/4 text-center flex justify-center font-libreBodoni">
-                                            <div className="flex-grow flex justify-center">
-                                                <div className="w-[24px]" style={{ opacity: 1, transform: 'none' }}>0</div>
-                                                <div className="w-[24px]" style={{ opacity: 1, transform: 'none' }}>0</div>
-                                            </div>
-                                            <span className="justify-self-end text-white/35 font-poppins text-sm font-light self-end">/</span>
-                                        </div>
-                                        <div className="w-1/4 text-center flex justify-center">
-                                            <div className="flex-grow font-libreBodoni flex justify-center">
-                                                <div className="w-[24px]" style={{ opacity: 1, transform: 'none' }}>1</div>
-                                                <div className="w-[24px]" style={{ opacity: 1, transform: 'none' }}>7</div>
-                                            </div>
-                                            <span className="justify-self-end text-white/35 font-poppins text-sm font-light self-end">/</span>
-                                        </div>
-                                        <div className="w-1/4 text-center flex justify-center">
-                                            <div className="flex-grow font-libreBodoni flex justify-center">
-                                                <div className="w-[24px]" style={{ opacity: 1, transform: 'none' }}>4</div>
-                                                <div className="w-[24px]" style={{ opacity: 1, transform: 'none' }}>2</div>
-                                            </div>
-                                            <span className="justify-self-end text-white/35 font-poppins text-sm font-light self-end">/</span>
-                                        </div>
-                                        <div className="w-1/4 text-center font-libreBodoni flex justify-center">
-                                            <div className="w-[24px]" style={{ opacity: 1, transform: 'none' }}>4</div>
-                                            <div className="w-[24px]" style={{ opacity: 0, transform: 'translateY(0.219869px) translateZ(0px)' }}>8</div>
-                                        </div>
+                                        <Timer fullDate={fullDate.days} />
+
+                                        <span className="justify-self-end text-white/35 font-poppins text-sm font-light self-end">/</span>
+                                        <Timer fullDate={fullDate.hours} />
+                                        <span className="justify-self-end text-white/35 font-poppins text-sm font-light self-end">/</span>
+                                        <Timer fullDate={fullDate.minutes} />
+                                        <span className="justify-self-end text-white/35 font-poppins text-sm font-light self-end">/</span>
+                                        <Timer fullDate={fullDate.seconds} s={true} />
+
+
                                     </div>
                                     <div className="flex w-full text-sm font-poppins italic font-light leading-none">
                                         <div className="w-1/4 text-center">DAYS</div>
@@ -155,11 +323,11 @@ const Home = () => {
                             <div className="flex flex-col p-6 max-md:p-5">
                                 <div className="flex justify-between items-center w-full text-md max-md:text-[14px] font-ebGaramond">
                                     <div className="opacity-60">
-                                        Current Price:<span className="ml-[3px]">$0.0265</span>
+                                        Current Price:<span className="ml-[3px]">{data && formatNumberWithCommas(data.currentPrice)}</span>
                                     </div>
                                     <div>
                                         <span className="opacity-60">Next Stage Price:</span>
-                                        <span className="text-[#FF3846] ml-[2px]">$0.0299</span>
+                                        <span className="text-[#FF3846] ml-[2px]">{data && formatNumberWithCommas(data.nextPrice)}</span>
                                     </div>
                                 </div>
                                 <div className="w-full h-[3px] bg-black mt-5 mb-5"></div>
@@ -210,19 +378,19 @@ const Home = () => {
                                                                         </h3>
                                                                         <div className="flex items-center gap-1 w-full mb-[10px] lg:mt-8 mt-4">
                                                                             <div className="flex-center flex-1 h-[44px] max-md:h-[38px] justify-center items-center border-[0.5px] rounded-[2px] border-[#e5e5e5] group cursor-pointer duration-200 transition-all bg-black">
-                                                                                <img alt="icon" fetchPriority="high" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={ethWhite} style={{ color: 'transparent' }} />
+                                                                                <img alt="icon" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={ethWhite} style={{ color: 'transparent' }} />
                                                                                 <div className="text-[16px] max-md:text-[13px] font-semibold leading-[24px] ml-2 text-[#fff]">ETH</div>
                                                                             </div>
                                                                             <div className="flex-center flex-1 h-[44px] max-md:h-[38px] justify-center items-center border-[0.5px] rounded-[2px] border-[#e5e5e5] group cursor-pointer duration-200 transition-all bg-white hover:border-black">
-                                                                                <img alt="icon" fetchPriority="high" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={bscOrg} style={{ color: 'transparent' }} />
+                                                                                <img alt="icon" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={bscOrg} style={{ color: 'transparent' }} />
                                                                                 <div className="text-[16px] max-md:text-[13px] font-semibold leading-[24px] ml-2 text-[#000]">BNB</div>
                                                                             </div>
                                                                             <div className="flex-center flex-1 h-[44px] max-md:h-[38px] justify-center items-center border-[0.5px] rounded-[2px] border-[#e5e5e5] group cursor-pointer duration-200 transition-all bg-white hover:border-black">
-                                                                                <img alt="icon" fetchPriority="high" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={solColor} style={{ color: 'transparent' }} />
+                                                                                <img alt="icon" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={solColor} style={{ color: 'transparent' }} />
                                                                                 <div className="text-[16px] max-md:text-[13px] font-semibold leading-[24px] ml-2 text-[#000]">SOL</div>
                                                                             </div>
                                                                             <div className="flex-center flex-1 h-[44px] max-md:h-[38px] justify-center items-center border-[0.5px] rounded-[2px] border-[#e5e5e5] group cursor-pointer duration-200 transition-all bg-white hover:border-black">
-                                                                                <img alt="icon" fetchPriority="high" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={cardGreen} style={{ color: 'transparent' }} />
+                                                                                <img alt="icon" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={cardGreen} style={{ color: 'transparent' }} />
                                                                                 <div className="text-[16px] max-md:text-[13px] font-semibold leading-[24px] ml-2 text-[#000]">CARD</div>
                                                                             </div>
                                                                         </div>
@@ -236,8 +404,8 @@ const Home = () => {
                                                                                 <div>
                                                                                     <div className="flex flex-row gap-[16px] items-center px-[16px] py-[14px] rounded-[2px] my-3 cursor-pointer hover:bg-[#f2f2f2]">
                                                                                         <div className="w-[36px] h-[36px] relative">
-                                                                                            <img alt="icon" fetchPriority="high" width="36" height="36" decoding="async" src={ethereum} style={{ color: 'transparent' }} />
-                                                                                            <img alt="icon" fetchPriority="high" width="16" height="16" decoding="async" className="absolute bottom-[-2px] right-[-2px] border border-white rounded-full object-cover" src={ethWhite} style={{ color: 'transparent' }} />
+                                                                                            <img alt="icon" width="36" height="36" decoding="async" src={ethereum} style={{ color: 'transparent' }} />
+                                                                                            <img alt="icon" width="16" height="16" decoding="async" className="absolute bottom-[-2px] right-[-2px] border border-white rounded-full object-cover" src={ethWhite} style={{ color: 'transparent' }} />
                                                                                         </div>
                                                                                         <div className="flex items-center justify-between flex-1">
                                                                                             <div className="flex items-center gap-2">
@@ -250,8 +418,8 @@ const Home = () => {
                                                                                 <div>
                                                                                     <div className="flex flex-row gap-[16px] items-center px-[16px] py-[14px] rounded-[2px] my-3 cursor-pointer hover:bg-[#f2f2f2]">
                                                                                         <div className="w-[36px] h-[36px] relative">
-                                                                                            <img alt="icon" fetchPriority="high" width="36" height="36" decoding="async" src={usdt} style={{ color: 'transparent' }} />
-                                                                                            <img alt="icon" fetchPriority="high" width="16" height="16" decoding="async" className="absolute bottom-[-2px] right-[-2px] border border-white rounded-full object-cover" src={ethWhite} style={{ color: 'transparent' }} />
+                                                                                            <img alt="icon" width="36" height="36" decoding="async" src={usdt} style={{ color: 'transparent' }} />
+                                                                                            <img alt="icon" width="16" height="16" decoding="async" className="absolute bottom-[-2px] right-[-2px] border border-white rounded-full object-cover" src={ethWhite} style={{ color: 'transparent' }} />
                                                                                         </div>
                                                                                         <div className="flex items-center justify-between flex-1">
                                                                                             <div className="flex items-center gap-2">
@@ -264,8 +432,8 @@ const Home = () => {
                                                                                 <div>
                                                                                     <div className="flex flex-row gap-[16px] items-center px-[16px] py-[14px] rounded-[2px] my-3 cursor-pointer hover:bg-[#f2f2f2]">
                                                                                         <div className="w-[36px] h-[36px] relative">
-                                                                                            <img alt="icon" fetchPriority="high" width="36" height="36" decoding="async" src={usdc} style={{ color: 'transparent' }} />
-                                                                                            <img alt="icon" fetchPriority="high" width="16" height="16" decoding="async" className="absolute bottom-[-2px] right-[-2px] border border-white rounded-full object-cover" src={ethWhite} style={{ color: 'transparent' }} />
+                                                                                            <img alt="icon" width="36" height="36" decoding="async" src={usdc} style={{ color: 'transparent' }} />
+                                                                                            <img alt="icon" width="16" height="16" decoding="async" className="absolute bottom-[-2px] right-[-2px] border border-white rounded-full object-cover" src={ethWhite} style={{ color: 'transparent' }} />
                                                                                         </div>
                                                                                         <div className="flex items-center justify-between flex-1">
                                                                                             <div className="flex items-center gap-2">
@@ -282,19 +450,19 @@ const Home = () => {
                                                                         </div>
                                                                         <div className="flex items-center gap-2 w-full mt-8">
                                                                             <div className="flex-center flex-1 h-[44px] max-md:h-[38px] justify-center items-center border-[0.5px] rounded-[2px] border-[#e5e5e5] group cursor-pointer duration-200 transition-all bg-black">
-                                                                                <img alt="icon" fetchPriority="high" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={ethWhite} style={{ color: 'transparent' }} />
+                                                                                <img alt="icon" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={ethWhite} style={{ color: 'transparent' }} />
                                                                                 <div className="text-[16px] max-md:text-[13px] font-semibold leading-[24px] ml-2 text-[#fff]">ETH</div>
                                                                             </div>
                                                                             <div className="flex-center flex-1 h-[44px] max-md:h-[38px] justify-center items-center border-[0.5px] rounded-[2px] border-[#e5e5e5] group cursor-pointer duration-200 transition-all bg-white hover:border-black">
-                                                                                <img alt="icon" fetchPriority="high" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={bscOrg} style={{ color: 'transparent' }} />
+                                                                                <img alt="icon" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={bscOrg} style={{ color: 'transparent' }} />
                                                                                 <div className="text-[16px] max-md:text-[13px] font-semibold leading-[24px] ml-2 text-[#000]">BNB</div>
                                                                             </div>
                                                                             <div className="flex-center flex-1 h-[44px] max-md:h-[38px] justify-center items-center border-[0.5px] rounded-[2px] border-[#e5e5e5] group cursor-pointer duration-200 transition-all bg-white hover:border-black">
-                                                                                <img alt="icon" fetchPriority="high" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={solColor} style={{ color: 'transparent' }} />
+                                                                                <img alt="icon" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={solColor} style={{ color: 'transparent' }} />
                                                                                 <div className="text-[16px] max-md:text-[13px] font-semibold leading-[24px] ml-2 text-[#000]">SOL</div>
                                                                             </div>
                                                                             <div className="flex-center flex-1 h-[44px] max-md:h-[38px] justify-center items-center border-[0.5px] rounded-[2px] border-[#e5e5e5] group cursor-pointer duration-200 transition-all bg-white hover:border-black">
-                                                                                <img alt="icon" fetchPriority="high" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={cardGreen} style={{ color: 'transparent' }} />
+                                                                                <img alt="icon" width="24" height="24" decoding="async" className="max-md:w-[18px] max-md:h-[18px]" src={cardGreen} style={{ color: 'transparent' }} />
                                                                                 <div className="text-[16px] max-md:text-[13px] font-semibold leading-[24px] ml-2 text-[#000]">CARD</div>
                                                                             </div>
                                                                         </div>

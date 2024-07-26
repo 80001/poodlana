@@ -7,7 +7,6 @@ const Runway = () => {
     const [style, setStyle] = useState({ transform: 'none' });
     const width = window.innerWidth;
 
-    console.log(width <= 700)
     const handleScroll = () => {
         const y = window.scrollY.toFixed(0);
         setScrollPosition(y);
@@ -56,7 +55,7 @@ const Runway = () => {
     }, [scrollPosition, width]);
 
     return (
-        <div id="runway" className="md:h-[9440.5px] overflow-clip overflow-x-auto">
+        <div id="runway" className="md:h-[9440.5px] overflow-clip overflow-hidden overflow-x-auto">
             <div className="md:h-[9040px] max-md:hidden"></div>
             <div className="sticky bottom-0 layout py-20 max-lg:py-[90px] max-lg:px-10 w-[100vw]">
                 <h2 className="font-bold text-[100px] uppercase  max-lg:text-[48px] leading-none max-lg:text-left">
