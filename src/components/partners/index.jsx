@@ -18,7 +18,7 @@ import coinPedia from '../../images/coinPedia.svg'
 
 const Partners = () => {
     const animationStyle = {
-        animation: 'templates-partner-moving-right 13.2249s linear infinite normal none',
+        animation: 'templates-partner-moving-right 40s linear infinite normal none',
     };
 
     return (

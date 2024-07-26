@@ -1,16 +1,53 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import centerDoge from '../../images/center-dog.webp'
 import wif from '../../images/wif.webp'
 import doge from '../../images/doge.webp'
 
 const Look = () => {
+    const [isIntersecting, setIsIntersecting] = useState(false);
+    const [style, setStyle] = useState({ transform: 'none' });
+    const lookbookRef = useRef(null);
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                const ratio = entry.intersectionRatio;
+                const scale = 1 + ratio * 0.3; // Scale between 1 and 1.3
+
+                if (entry.isIntersecting) {
+                    if (ratio >= 0.5) { // Adjust threshold for smoother effect
+                        setStyle({ transform: `scale(${1}) translateZ(0px)`, transition: 'transform .5s' });
+                    } else {
+                        setStyle({ transform: 'scale(1.3) translateZ(0px)', transition: 'transform .5s' });
+                    }
+                } else {
+                    setStyle({ transform: 'scale(1.3) translateZ(0px)', transition: 'transform .5s' });
+                }
+            },
+            {
+                threshold: Array.from({ length: 101 }, (_, i) => i / 100) // Thresholds from 0 to 1
+            }
+        );
+
+        if (lookbookRef.current) {
+            observer.observe(lookbookRef.current);
+        }
+
+        return () => {
+            if (lookbookRef.current) {
+                observer.unobserve(lookbookRef.current);
+            }
+        };
+    }, []);
+
+
     return (
-        <div id="look" className="bg-[url('/images/lookbook/bg.jpg')] bg-cover bg-center relative text-white w-full" style={{ opacity: 1, transform: 'none' }}>
-            <div className="flex flex-col items-center w-full pt-[96px] max-lg:pt-[62px]" style={{ transform: 'none' }}>
+        <div id="look" className={`${isIntersecting ? 'scale-transition' : ''} bg-[url('/images/lookbook/bg.jpg')] bg-cover bg-center relative text-white w-full`} style={{ opacity: 1, transform: 'none' }}>
+            <div className="flex flex-col items-center w-full pt-[96px] max-lg:pt-[62px]" style={style} ref={lookbookRef}>
                 <p className="font-libreBodoni font-medium italic text-[40px] text-black max-lg:text-[24px]">
                     2024 Trending Meme
                 </p>
-                <h2 className="uppercase text-[84px] mb-[20px] font-bold text-center text-black max-lg:text-[52px]">
+                <h2 className="uppercase text-[84px] mb-[20px] font-bold text-center text-black max-lg:text-[52px]" >
                     look book
                 </h2>
             </div>

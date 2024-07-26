@@ -3107,6 +3107,14 @@ body {
         width: 340px !important;
     }
 }
+@media (max-width: 500px) {
+    .md\:logo {
+        width: 126px !important;
+    }
+    .md\:text-left {
+        text-align: left;
+    }
+}
 @font-face {
     font-family: Poppins;
     src: url(../fonts/Poppins-Regular.ttf);
@@ -3396,6 +3404,12 @@ body {
 @media not all and (min-width: 1024px) {
     .max-lg\:fixed {
         position: fixed;
+    }
+    .max-lg\:text-left {
+        text-align: left;
+    }
+    .max-lg\:wid {
+        width: 264px !important;
     }
     .max-lg\:relative {
         position: relative;
