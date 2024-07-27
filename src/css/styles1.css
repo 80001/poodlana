@@ -3111,8 +3111,14 @@ body {
     .md\:logo {
         width: 126px !important;
     }
+    .md\:footer {
+        display: none !important;
+    }
     .md\:text-left {
         text-align: left;
+    }
+    .md\:text-center {
+        text-align: center !important;
     }
 }
 @font-face {

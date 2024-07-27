@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import us from '../../images/flags/us.webp';
 import cz from '../../images/flags/chinese.svg';
 import de from '../../images/flags/deutsch.svg';
@@ -20,10 +20,10 @@ import wallet from '../../images/wallet.svg';
 import sol from '../../images/sol.svg';
 import bnb from '../../images/bnb-36x36.svg';
 import eth from '../../images/eth.svg';
+import { Context } from '../../context';
 
 const Header = () => {
     const [showModal, setShowModal] = useState(false)
-    const [showModalWallet, setShowModalWallet] = useState(false)
     const [showModals, setShowModals] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
     const [showModals2, setShowModals2] = useState(false)
@@ -32,6 +32,8 @@ const Header = () => {
     const modalRef = useRef();
     const modalRef2 = useRef();
     const modalRef3 = useRef();
+    const { setModalWallet, pay } = useContext(Context)
+
 
 
 
@@ -170,7 +172,9 @@ const Header = () => {
 
 
     const openModalWallet = (type) => {
-        console.log(type)
+        setModalWallet({ status: true, type: type })
+
+        setShowModal3(false)
     }
 
     return (
@@ -336,99 +340,99 @@ const Header = () => {
                 <div className="lg:w-[200px] flex justify-end"><div className="relative">
                     <button onClick={() => setShowModal3(!showModal3)} className="flex-center overflow-hidden px-4 md:px-4 bg-black hover:bg-black/80 cursor-pointer rounded text-[13px] font-semibold uppercase text-white transition-all duration-200 h-[40px] lg:max-w-[240px]" id="headlessui-menu-button-:r0:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="" aria-controls="headlessui-menu-items-:r2:">
                         <img alt="wallet" loading="lazy" width="16" height="16" decoding="async" data-nimg="1" className="mr-2" src={wallet} style={{ color: 'transparent' }}></img>Connect Wallet</button>
-
-                    <div ref={modalRef3}
-                        className={`${showModal3 ? '' : 'hidden'} absolute right-0 lg:min-w-[375px] max-lg:fixed max-lg:w-full max-lg:flex max-lg:justify-center`}
-                        aria-labelledby="headlessui-menu-button-:r5:"
-                        id="headlessui-menu-items-:rc:"
-                        role="menu"
-                        tabIndex="0"
-                        data-headlessui-state="open"
-                    >
-                        <div
-                            className="w-full p-[1px] border border-black bg-white backdrop-blur-[40px] overflow-hidden mt-[14px]"
-                            role="none"
+                    {showModal3 &&
+                        <div ref={modalRef3}
+                            className={`${showModal3 ? '' : 'hidden '} absolute right-0 lg:min-w-[375px] max-lg:fixed max-lg:w-full max-lg:flex max-lg:justify-center`}
+                            aria-labelledby="headlessui-menu-button-:r5:"
+                            id="headlessui-menu-items-:rc:"
+                            role="menu"
+                            tabIndex="0"
+                            data-headlessui-state="open"
                         >
                             <div
-                                className="p-[24px]"
+                                className="w-full p-[1px] border border-black bg-white backdrop-blur-[40px] overflow-hidden mt-[14px]"
                                 role="none"
                             >
-                                <h5
-                                    onClick={() => console.log('xx')}
-                                    className="font-bold font-libreBodoni text-xl uppercase leading-none"
+                                <div
+                                    className="p-[24px]"
                                     role="none"
                                 >
-                                    Connect Wallet
-                                </h5>
-                                <p
-                                    className="w-[60px] h-[0.5px] bg-black my-4"
-                                    role="none"
-                                ></p>
-                                <div onClick={() => openModalWallet('evm')}
-                                    className="flex flex-row justify-between items-center cursor-pointer hover:text-primary my-6"
-                                    role="none"
-                                >
-                                    <div className="flex flex-col gap-[6px]" role="none">
-                                        <p className="text-[17px] font-bold leading-none" role="none">
-                                            EVM
-                                        </p>
-                                        <span className="font-ebGaramond text-sm font-medium leading-none opacity-60" role="none">
-                                            Ethereum / BNB
-                                        </span>
+                                    <h5
+
+                                        className="font-bold font-libreBodoni text-xl uppercase leading-none"
+                                        role="none"
+                                    >
+                                        Connect Wallet
+                                    </h5>
+                                    <p
+                                        className="w-[60px] h-[0.5px] bg-black my-4"
+                                        role="none"
+                                    ></p>
+                                    <div onClick={() => openModalWallet('evm')}
+                                        className="flex flex-row justify-between items-center cursor-pointer hover:text-primary my-6"
+                                        role="none"
+                                    >
+                                        <div className="flex flex-col gap-[6px]" role="none">
+                                            <p className="text-[17px] font-bold leading-none" role="none">
+                                                EVM
+                                            </p>
+                                            <span className="font-ebGaramond text-sm font-medium leading-none opacity-60" role="none">
+                                                Ethereum / BNB
+                                            </span>
+                                        </div>
+                                        <div className="flex items-center" role="none">
+                                            <img
+                                                alt="icon"
+                                                loading="lazy"
+                                                width="24"
+                                                height="24"
+                                                decoding="async"
+                                                data-nimg="1"
+                                                className="mr-[-10px]"
+                                                src={eth}
+                                                style={{ color: 'transparent' }}
+                                                role="none"
+                                            />
+                                            <img
+                                                alt="icon"
+                                                loading="lazy"
+                                                width="24"
+                                                height="24"
+                                                decoding="async"
+                                                data-nimg="1"
+                                                className="w-[24px] h-[24px]"
+                                                src={bnb}
+                                                style={{ color: 'transparent' }}
+                                                role="none"
+                                            />
+                                        </div>
                                     </div>
-                                    <div className="flex items-center" role="none">
-                                        <img
-                                            alt="icon"
-                                            loading="lazy"
-                                            width="24"
-                                            height="24"
-                                            decoding="async"
-                                            data-nimg="1"
-                                            className="mr-[-10px]"
-                                            src={eth}
-                                            style={{ color: 'transparent' }}
-                                            role="none"
-                                        />
-                                        <img
-                                            alt="icon"
-                                            loading="lazy"
-                                            width="24"
-                                            height="24"
-                                            decoding="async"
-                                            data-nimg="1"
-                                            className="w-[24px] h-[24px]"
-                                            src={bnb}
-                                            style={{ color: 'transparent' }}
-                                            role="none"
-                                        />
-                                    </div>
-                                </div>
-                                <div onClick={() => openModalWallet('sol')}
-                                    className="flex justify-between items-center cursor-pointer hover:text-primary"
-                                    role="none"
-                                >
-                                    <div className="flex flex-col gap-[6px]" role="none">
-                                        <p className="text-[17px] font-bold leading-none" role="none">
-                                            Solana
-                                        </p>
-                                    </div>
-                                    <div className="flex flex-row gap-[8px] items-center" role="none">
-                                        <img
-                                            alt="icon"
-                                            loading="lazy"
-                                            width="24"
-                                            height="24"
-                                            decoding="async"
-                                            data-nimg="1"
-                                            src={sol}
-                                            style={{ color: 'transparent' }}
-                                            role="none"
-                                        />
+                                    <div onClick={() => openModalWallet('sol')}
+                                        className="flex justify-between items-center cursor-pointer hover:text-primary"
+                                        role="none"
+                                    >
+                                        <div className="flex flex-col gap-[6px]" role="none">
+                                            <p className="text-[17px] font-bold leading-none" role="none">
+                                                Solana
+                                            </p>
+                                        </div>
+                                        <div className="flex flex-row gap-[8px] items-center" role="none">
+                                            <img
+                                                alt="icon"
+                                                loading="lazy"
+                                                width="24"
+                                                height="24"
+                                                decoding="async"
+                                                data-nimg="1"
+                                                src={sol}
+                                                style={{ color: 'transparent' }}
+                                                role="none"
+                                            />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
+                        </div>}
                 </div></div>
             </div>
         </div >

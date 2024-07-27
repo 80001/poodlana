@@ -33,7 +33,7 @@ const Timer = ({ fullDate, s = false }) => {
         }
 
 
-    }, [uniqueDates1, uniqueDates, fullDate])
+    }, [uniqueDates1, uniqueDates, fullDate, anime, anime1, anime2])
     useEffect(() => {
         const formattedDate = formatNumber(fullDate);
 

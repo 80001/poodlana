@@ -42,8 +42,8 @@ const Look = () => {
 
 
     return (
-        <div id="look" className={`${isIntersecting ? 'scale-transition' : ''} bg-[url('/images/lookbook/bg.jpg')] bg-cover bg-center relative text-white w-full`} style={{ opacity: 1, transform: 'none' }}>
-            <div className="flex flex-col items-center w-full pt-[96px] max-lg:pt-[62px]" style={style} ref={lookbookRef}>
+        <div id="look" className={`${isIntersecting ? 'scale-transition' : ''} bg-[url('/images/lookbook/bg.jpg')] bg-cover bg-center relative text-white w-full overflow-hidden`} style={{ opacity: 1, transform: 'none' }}>
+            <div className=" flex flex-col items-center w-full pt-[96px] max-lg:pt-[62px]" style={style} ref={lookbookRef}>
                 <p className="font-libreBodoni font-medium italic text-[40px] text-black max-lg:text-[24px]">
                     2024 Trending Meme
                 </p>
@@ -100,7 +100,7 @@ const Look = () => {
                         style={{ color: 'transparent' }}
                     />
                 </div>
-                <div className="flex flex-col items-center absolute right-[10%] lg:top-[50%] lg:mt-[-370px] max-lg:right-[-6vw] max-lg:bottom-auto max-lg:top-[0px]">
+                <div className="flex flex-col items-center absolute right-[10%] lg:top-[50%] lg:mt-[-370px] max-lg:right-[-6vw] max-lg:bottom-auto max-lg:top-[0px] ">
                     <h4 className="text-[36px] font-black max-lg:text-[18px]">
                         Dogwifhat
                     </h4>
