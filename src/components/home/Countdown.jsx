@@ -8,8 +8,8 @@ function Countdown({ time, label }) {
     <div className="w-1/4 flex flex-col">
       <div className="w-full text-center flex justify-center font-libreBodoni">
         <div className="flex-grow flex justify-center">
-          <div className="w-[24px] fade">{formated[0]}</div>
-          <div className="w-[24px] fade">{formated[1]}</div>
+          <div className="w-[24px] fade" key={formated[0]}>{formated[0]}</div>
+          <div className="w-[24px] fade" key={formated[1]}>{formated[1]}</div>
         </div>
       </div>
 
