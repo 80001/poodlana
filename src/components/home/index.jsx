@@ -13,6 +13,7 @@ import ethereum from '../../images/ethereum.svg';
 import usdt from '../../images/usdt.svg';
 import usdc from '../../images/usdc-36x36.svg';
 import Timer from './timer';
+import Tmr from './TimerRework';
 
 const Home = () => {
     const [data, setData] = useState(null)
@@ -448,7 +449,9 @@ const Home = () => {
                                 <div className="text-center uppercase font-semibold italic text-[20px] max-md:text-[16px]">
                                     Buy in before price increases!
                                 </div>
-                                <div className="flex flex-col">
+
+                                <Tmr  />
+                                {/* <div className="flex flex-col">
                                     <div className="flex justify-center w-full text-[40px] max-md:text-[35px] leading-none max-lg:mt-2">
                                         <Timer fullDate={fullDate.days} />
 
@@ -467,7 +470,7 @@ const Home = () => {
                                         <div className="w-1/4 text-center">MINS</div>
                                         <div className="w-1/4 text-center">SECS</div>
                                     </div>
-                                </div>
+                                </div> */}
                             </div>
                             <div className="flex flex-col p-6 max-md:p-5">
                                 <div className="flex justify-between items-center w-full text-md max-md:text-[14px] font-ebGaramond">
