@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import us from '../../images/flags/us.webp';
 import cz from '../../images/flags/chinese.svg';
 import de from '../../images/flags/deutsch.svg';
@@ -22,9 +22,157 @@ import bnb from '../../images/bnb-36x36.svg';
 import eth from '../../images/eth.svg';
 
 const Header = () => {
-    const [showModal, setShowModal] = useState('false')
-    const [showModal2, setShowModal2] = useState('false')
-    const [showModal3, setShowModal3] = useState('false')
+    const [showModal, setShowModal] = useState(false)
+    const [showModalWallet, setShowModalWallet] = useState(false)
+    const [showModals, setShowModals] = useState(false)
+    const [showModal2, setShowModal2] = useState(false)
+    const [showModals2, setShowModals2] = useState(false)
+    const [showModal3, setShowModal3] = useState(false)
+    const [showModals3, setShowModals3] = useState(false)
+    const modalRef = useRef();
+    const modalRef2 = useRef();
+    const modalRef3 = useRef();
+
+
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                if (showModals) {
+
+                    setShowModal(false)
+                    setShowModals(false)
+                } else {
+
+                    setShowModals(true)
+                }
+            }
+            else {
+
+                setShowModals(true)
+            }
+        };
+
+        if (showModal) {
+
+
+            if (showModals) {
+
+                document.addEventListener('mousedown', handleClickOutside);
+            } else {
+                setShowModals(true)
+            }
+        } else {
+            if (modalRef.current) {
+
+                document.removeEventListener('mousedown', handleClickOutside);
+                if (setShowModals) {
+
+                    setShowModals(false)
+                }
+            }
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showModal, showModals]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef2.current && !modalRef2.current.contains(event.target)) {
+                if (showModals2) {
+
+                    setShowModal2(false)
+                    setShowModals2(false)
+                } else {
+
+
+                    setShowModals2(true)
+                }
+            }
+            else {
+
+
+                setShowModals2(true)
+            }
+        };
+
+        if (showModal2) {
+
+
+            if (showModals2) {
+
+                document.addEventListener('mousedown', handleClickOutside);
+            } else {
+                setShowModals2(true)
+            }
+        } else {
+            if (modalRef2.current) {
+
+                document.removeEventListener('mousedown', handleClickOutside);
+                if (setShowModals2) {
+
+                    setShowModals2(false)
+                }
+            }
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showModal2, showModals2]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef3.current && !modalRef3.current.contains(event.target)) {
+                if (showModals3) {
+
+                    setShowModal3(false)
+                    setShowModals3(false)
+                } else {
+
+
+                    setShowModals3(true)
+                }
+            }
+            else {
+
+
+                setShowModals3(true)
+            }
+        };
+
+        if (showModal3) {
+
+
+            if (showModals3) {
+
+                document.addEventListener('mousedown', handleClickOutside);
+            } else {
+                setShowModals3(true)
+            }
+        } else {
+            if (modalRef3.current) {
+
+                document.removeEventListener('mousedown', handleClickOutside);
+                if (setShowModals3) {
+
+                    setShowModals3(false)
+                }
+            }
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showModal3, showModals3]);
+
+
+    const openModalWallet = (type) => {
+        console.log(type)
+    }
+
     return (
         <div className="h-[72px] justify-center items-center flex w-[100vw] flex-col px-8 py-4 max-lg:max-w-full backdrop-blur-lg top-0 left-0 z-[100] fixed max-lg:bg-white max-lg:h-[64px] max-lg:px-4">
             <div className="flex w-full h-full justify-between items-center max-lg:justify-start" style={{ opacity: 1, transform: 'translateY(0px) translateZ(0px)' }}>
@@ -43,95 +191,95 @@ const Header = () => {
                             <img alt="flag" loading="lazy" width="18" height="18" decoding="async" data-nimg="1" className="overflow-hidden min-w-[18px] mr-2" style={{ color: 'transparent' }} src={us} />
                             English
                         </button>
-                        <div className={`${showModal ? 'hidden' : ''} absolute left-0 max-lg:left-[-50%] max-lg:translate-x-[-50%] mt-2 w-[225px] divide-gray-100 bg-white border border-black`} aria-labelledby="headlessui-menu-button-:R5p6haj6:" id="headlessui-menu-items-:r2:" role="menu" tabIndex="0" data-headlessui-state="open">
+                        <div ref={modalRef} className={`${showModal ? '' : 'hidden'} absolute left-0 max-lg:left-[-50%] max-lg:translate-x-[-50%] mt-2 w-[225px] divide-gray-100 bg-white border border-black`} aria-labelledby="headlessui-menu-button-:R5p6haj6:" id="headlessui-menu-items-:r2:" role="menu" tabIndex="0" data-headlessui-state="open">
                             <div className="py-[5px] px-1 flex flex-col gap-[10px]" role="none">
-                                <div className="flex flex-row gap-[4px] bg-black text-white  hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => { console.log('eng'); setShowModal(!showModal) }} className="flex flex-row gap-[4px] bg-black text-white  hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="en" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={us} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">English</span>
                                     </div>
                                     <img alt="check" loading="lazy" width="20" height="20" decoding="async" data-nimg="1" src={check} style={{ color: "transparent" }} role="none" />
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="zh" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={cz} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">中文(简体)</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="de" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={de} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Deutsch</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="nl" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={nl} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Nederlands</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="ja" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={jp} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">日本語</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="ko" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={ko} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">한국어</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="fr" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={fr} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Français</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="es" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={es} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Español</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="ru" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={pl} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Polski</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="it" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={ro} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Română</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="vi" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={vt} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Tiếng Việt</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="el" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={sk} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Slovaški</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="pt" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={pt} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Português</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="hu" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={tr} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">Türkiye</span>
                                     </div>
                                 </div>
-                                <div className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
-                                    <div className="flex flex-row items-center gap-1" role="none">
+                                <div onClick={() => setShowModal(!showModal)} className="flex flex-row gap-[4px] hover:bg-[#f4f4f4] hover:cursor-pointer px-2 justify-between" role="none">
+                                    <div className="hover:bg-[#f4f4f4] flex flex-row items-center gap-1" role="none">
                                         <img alt="th" loading="lazy" width="24" height="24" decoding="async" data-nimg="1" src={thai} style={{ color: "transparent" }} role="none" />
                                         <span className="font-ebGaramond font-bold leading-[36px] px-[4px]" role="none">แบบไทย</span>
                                     </div>
@@ -148,27 +296,27 @@ const Header = () => {
                                 <path d="m6 9 6 6 6-6"></path>
                             </svg>
                         </button>
-                        <div className={`${showModal2 ? 'hidden' : ''} absolute left-0 mt-2 w-[240px] bg-white border border-black`} aria-labelledby="headlessui-menu-button-:R1696haj6:" id="headlessui-menu-items-:r6:" role="menu" tabIndex="0" data-headlessui-state="open">
-                            <div className="px-2 py-3" role="none">
+                        <div className={`${showModal2 ? '' : 'hidden'} absolute left-0 mt-2 w-[240px] bg-white border border-black`} aria-labelledby="headlessui-menu-button-:R1696haj6:" id="headlessui-menu-items-:r6:" role="menu" tabIndex="0" data-headlessui-state="open">
+                            <div className="px-2 py-3" role="none" ref={modalRef2} >
                                 <div id="headlessui-menu-item-:r7:" role="menuitem" tabIndex="-1" data-headlessui-state="">
-                                    <a href='#about'>
-                                        <div className=" flex w-full items-center px-2  cursor-pointer">
+                                    <a href='#about' onClick={() => setShowModal2(!showModal2)}>
+                                        <div className="hover:bg-[#f4f4f4] flex w-full items-center px-2  cursor-pointer">
                                             <div className="font-libreBodoni text-[18px] font-bold leading-[44px] ">About</div></div></a></div>
                                 <div className="" id="headlessui-menu-item-:r8:" role="menuitem" tabIndex="-1" data-headlessui-state="">
-                                    <a href='#look'>
-                                        <div className=" flex w-full items-center px-2  cursor-pointer">
+                                    <a href='#look' onClick={() => setShowModal2(!showModal2)}>
+                                        <div className="hover:bg-[#f4f4f4] flex w-full items-center px-2  cursor-pointer">
                                             <div className="font-libreBodoni text-[18px] font-bold leading-[44px] ">Look Book</div></div></a></div>
                                 <div className="" id="headlessui-menu-item-:r9:" role="menuitem" tabIndex="-1" data-headlessui-state="">
-                                    <a href='#runway'>
-                                        <div className=" flex w-full items-center px-2  cursor-pointer">
+                                    <a href='#runway' onClick={() => setShowModal2(!showModal2)}>
+                                        <div className="hover:bg-[#f4f4f4] flex w-full items-center px-2  cursor-pointer">
                                             <div className="font-libreBodoni text-[18px] font-bold leading-[44px] ">The Runway</div></div></a></div>
                                 <div className="" id="headlessui-menu-item-:ra:" role="menuitem" tabIndex="-1" data-headlessui-state="">
-                                    <a href='#fashion'>
-                                        <div className=" flex w-full items-center px-2  cursor-pointer">
+                                    <a href='#fashion' onClick={() => setShowModal2(!showModal2)}>
+                                        <div className="hover:bg-[#f4f4f4] flex w-full items-center px-2  cursor-pointer">
                                             <div className="font-libreBodoni text-[18px] font-bold leading-[44px] ">Fashionomics</div></div></a></div>
                                 <div className="" id="headlessui-menu-item-:rb:" role="menuitem" tabIndex="-1" data-headlessui-state="">
-                                    <a href='#faq'>
-                                        <div className=" flex w-full items-center px-2  cursor-pointer">
+                                    <a href='#faq' onClick={() => setShowModal2(!showModal2)}>
+                                        <div className="hover:bg-[#f4f4f4] flex w-full items-center px-2  cursor-pointer">
                                             <div className="font-libreBodoni text-[18px] font-bold leading-[44px] ">FAQ</div></div></a></div></div></div>
                     </div>
                     <div className="relative">
@@ -189,8 +337,8 @@ const Header = () => {
                     <button onClick={() => setShowModal3(!showModal3)} className="flex-center overflow-hidden px-4 md:px-4 bg-black hover:bg-black/80 cursor-pointer rounded text-[13px] font-semibold uppercase text-white transition-all duration-200 h-[40px] lg:max-w-[240px]" id="headlessui-menu-button-:r0:" type="button" aria-haspopup="menu" aria-expanded="false" data-headlessui-state="" aria-controls="headlessui-menu-items-:r2:">
                         <img alt="wallet" loading="lazy" width="16" height="16" decoding="async" data-nimg="1" className="mr-2" src={wallet} style={{ color: 'transparent' }}></img>Connect Wallet</button>
 
-                    <div
-                        className={`${showModal3 ? 'hidden' : ''} absolute right-0 lg:min-w-[375px] max-lg:fixed max-lg:w-full max-lg:flex max-lg:justify-center`}
+                    <div ref={modalRef3}
+                        className={`${showModal3 ? '' : 'hidden'} absolute right-0 lg:min-w-[375px] max-lg:fixed max-lg:w-full max-lg:flex max-lg:justify-center`}
                         aria-labelledby="headlessui-menu-button-:r5:"
                         id="headlessui-menu-items-:rc:"
                         role="menu"
@@ -206,6 +354,7 @@ const Header = () => {
                                 role="none"
                             >
                                 <h5
+                                    onClick={() => console.log('xx')}
                                     className="font-bold font-libreBodoni text-xl uppercase leading-none"
                                     role="none"
                                 >
@@ -215,7 +364,7 @@ const Header = () => {
                                     className="w-[60px] h-[0.5px] bg-black my-4"
                                     role="none"
                                 ></p>
-                                <div
+                                <div onClick={() => openModalWallet('evm')}
                                     className="flex flex-row justify-between items-center cursor-pointer hover:text-primary my-6"
                                     role="none"
                                 >
@@ -254,7 +403,7 @@ const Header = () => {
                                         />
                                     </div>
                                 </div>
-                                <div
+                                <div onClick={() => openModalWallet('sol')}
                                     className="flex justify-between items-center cursor-pointer hover:text-primary"
                                     role="none"
                                 >

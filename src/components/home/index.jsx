@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import poodlana from '../../images/poodlana.webp'
 import plane from '../../images/plane.svg'
 
@@ -15,13 +15,162 @@ import usdc from '../../images/usdc-36x36.svg';
 import Timer from './timer';
 
 const Home = () => {
-    const [showModal, setShowModal] = useState('false')
     const [data, setData] = useState(null)
     const [date, setDate] = useState(null)
     const [anime, setAnime] = useState(false)
     const [fullDate, setFullDate] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
     const [fullDateEnd, setFullDateEnd] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
     const [style, setStyle] = useState({ backgroundColor: 'rgb(0, 112, 58)' });
+    const [showModalWallet, setShowModalWallet] = useState(false)
+    const [showModal, setShowModal] = useState('false')
+    const [showModals, setShowModals] = useState(false)
+    const [showModal2, setShowModal2] = useState(false)
+    const [showModals2, setShowModals2] = useState(false)
+    const [showModal3, setShowModal3] = useState(false)
+    const [showModals3, setShowModals3] = useState(false)
+    const modalRef = useRef();
+    const modalRef2 = useRef();
+    const modalRef3 = useRef();
+
+
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                if (showModals) {
+
+                    setShowModal(false)
+                    setShowModals(false)
+                } else {
+
+                    setShowModals(true)
+                }
+            }
+            else {
+
+                setShowModals(true)
+            }
+        };
+
+        if (showModal) {
+
+
+            if (showModals) {
+
+                document.addEventListener('mousedown', handleClickOutside);
+            } else {
+                setShowModals(true)
+            }
+        } else {
+            if (modalRef.current) {
+
+                document.removeEventListener('mousedown', handleClickOutside);
+                if (setShowModals) {
+
+                    setShowModals(false)
+                }
+            }
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showModal, showModals]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef2.current && !modalRef2.current.contains(event.target)) {
+                if (showModals2) {
+
+                    setShowModal2(false)
+                    setShowModals2(false)
+                } else {
+
+
+                    setShowModals2(true)
+                }
+            }
+            else {
+
+
+                setShowModals2(true)
+            }
+        };
+
+        if (showModal2) {
+
+
+            if (showModals2) {
+
+                document.addEventListener('mousedown', handleClickOutside);
+            } else {
+                setShowModals2(true)
+            }
+        } else {
+            if (modalRef2.current) {
+
+                document.removeEventListener('mousedown', handleClickOutside);
+                if (setShowModals2) {
+
+                    setShowModals2(false)
+                }
+            }
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showModal2, showModals2]);
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef3.current && !modalRef3.current.contains(event.target)) {
+                if (showModals3) {
+
+                    setShowModal3(false)
+                    setShowModals3(false)
+                } else {
+
+
+                    setShowModals3(true)
+                }
+            }
+            else {
+
+
+                setShowModals3(true)
+            }
+        };
+
+        if (showModal3) {
+
+
+            if (showModals3) {
+
+                document.addEventListener('mousedown', handleClickOutside);
+            } else {
+                setShowModals3(true)
+            }
+        } else {
+            if (modalRef3.current) {
+
+                document.removeEventListener('mousedown', handleClickOutside);
+                if (setShowModals3) {
+
+                    setShowModals3(false)
+                }
+            }
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [showModal3, showModals3]);
+
+
+    const openModalWallet = (type) => {
+        console.log(type)
+    }
 
     function formatNumberWithCommas(number) {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -515,7 +664,7 @@ const Home = () => {
                                     >
                                         Connect wallet
                                     </button>
-                                    <div className={`${showModal ? 'hidden' : ''} absolute w-full left-[50%] translate-x-[-50%] bottom-[60px]`}
+                                    <div ref={modalRef} className={`${showModal ? '' : 'hidden'} absolute w-full left-[50%] translate-x-[-50%] bottom-[60px]`}
                                         aria-labelledby="headlessui-menu-button-:r5:"
                                         id="headlessui-menu-items-:rc:"
                                         role="menu"
@@ -540,7 +689,7 @@ const Home = () => {
                                                     className="w-[60px] h-[0.5px] bg-black my-4"
                                                     role="none"
                                                 ></p>
-                                                <div
+                                                <div onClick={() => openModalWallet('evm')}
                                                     className="flex flex-row justify-between items-center cursor-pointer hover:text-primary my-6"
                                                     role="none"
                                                 >
@@ -579,7 +728,7 @@ const Home = () => {
                                                         />
                                                     </div>
                                                 </div>
-                                                <div
+                                                <div onClick={() => openModalWallet('sol')}
                                                     className="flex justify-between items-center cursor-pointer hover:text-primary"
                                                     role="none"
                                                 >

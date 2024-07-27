@@ -1,9 +1,37 @@
-import React from 'react'
+import React, { useRef, useEffect } from 'react';
 
-const Header = () => {
+const Modal = ({ type, isOpen, onClose, children }) => {
+    const modalRef = useRef();
+
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (modalRef.current && !modalRef.current.contains(event.target)) {
+                onClose();
+            }
+        };
+
+        if (isOpen) {
+            document.addEventListener('mousedown', handleClickOutside);
+        } else {
+            document.removeEventListener('mousedown', handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [isOpen, onClose]);
+
+    if (!isOpen) {
+        return null;
+    }
+
     return (
-        <div>Header</div>
-    )
-}
+        <div className="modal-backdrop">
+            <div className="modal-content" ref={modalRef}>
+                {children}
+            </div>
+        </div>
+    );
+};
 
-export default Header
+export default Modal;

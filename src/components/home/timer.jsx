@@ -73,11 +73,11 @@ const Timer = ({ fullDate, s = false }) => {
             return prevDates;
         });
         setTimeout(() => {
-            console.log('inters', anime2)
+
             setAnime2(true)
         }, 100)
         setTimeout(() => {
-            console.log('inter', anime2)
+
             setAnime2(false)
         }, 900)
 
