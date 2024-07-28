@@ -1928,6 +1928,9 @@ video {
 .overflow-clip {
     overflow: clip;
 }
+.overflow-auto {
+    overflow: auto;
+}
 .overflow-y-auto {
     overflow-y: auto;
 }
@@ -3118,7 +3121,7 @@ body {
         text-align: left;
     }
     .md\:text-center {
-        text-align: center !important;
+        text-align: center;
     }
 }
 @font-face {
@@ -3358,6 +3361,10 @@ body {
 .hover\:cursor-pointer:hover {
     cursor: pointer;
 }
+.hover\:cursor-auto:hover {
+    cursor: text;
+}
+
 .hover\:border-black:hover {
     --tw-border-opacity: 1;
     border-color: rgb(0 0 0 / var(--tw-border-opacity));

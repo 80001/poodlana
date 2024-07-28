@@ -14,7 +14,7 @@ const Press = () => {
 
     useEffect(() => {
         const handleResize = () => {
-            setIsMobile(window.innerWidth <= 800);
+            setIsMobile(window.innerWidth < 768);
         };
 
         handleResize();

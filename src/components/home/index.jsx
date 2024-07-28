@@ -9,161 +9,49 @@ import eth from '../../images/eth.svg';
 import usd from '../../images/usd.svg';
 import usdt from '../../images/usdt.svg';
 import usdc from '../../images/usdc-36x36.svg';
-import Timer from './timer';
 import { Context } from '../../context';
+import Tmr from './TimeRevork';
 
 const Home = () => {
     const [data, setData] = useState(null)
     const [date, setDate] = useState(null)
-    const [anime, setAnime] = useState(false)
-    const [fullDate, setFullDate] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
-    const [fullDateEnd, setFullDateEnd] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 })
     const [style, setStyle] = useState({ backgroundColor: 'rgb(0, 112, 58)' });
     const [showModal, setShowModal] = useState(false)
-    const [showModals, setShowModals] = useState(false)
     const [showModal2, setShowModal2] = useState(false)
-    const [showModals2, setShowModals2] = useState(false)
     const [showModal3, setShowModal3] = useState(false)
-    const [showModals3, setShowModals3] = useState(false)
     const modalRef = useRef();
     const modalRef2 = useRef();
     const modalRef3 = useRef();
     const { modalPayment, setModalWallet, setModalPayment, pay } = useContext(Context)
 
-
+    const modals = [
+        { show: showModal, setShow: setShowModal, ref: modalRef },
+        { show: showModal2, setShow: setShowModal2, ref: modalRef2 },
+        { show: showModal3, setShow: setShowModal3, ref: modalRef3 },
+    ];
 
     useEffect(() => {
         const handleClickOutside = (event) => {
-            if (modalRef.current && !modalRef.current.contains(event.target)) {
-                if (showModals) {
-
-                    setShowModal(false)
-                    setShowModals(false)
-                } else {
-
-                    setShowModals(true)
+            modals.forEach(({ show, setShow, ref }) => {
+                if (ref.current && !ref.current.contains(event.target) && show) {
+                    setShow(false);
                 }
-            }
-            else {
-
-                setShowModals(true)
-            }
+            });
         };
 
-        if (showModal) {
+        const activeModals = modals.filter(({ show }) => show);
 
-
-            if (showModals) {
-
-                document.addEventListener('mousedown', handleClickOutside);
-            } else {
-                setShowModals(true)
-            }
+        if (activeModals.length > 0) {
+            document.addEventListener('mousedown', handleClickOutside);
         } else {
-            if (modalRef.current) {
-
-                document.removeEventListener('mousedown', handleClickOutside);
-                if (setShowModals) {
-
-                    setShowModals(false)
-                }
-            }
+            document.removeEventListener('mousedown', handleClickOutside);
         }
 
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [showModal, showModals]);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (modalRef2.current && !modalRef2.current.contains(event.target)) {
-                if (showModals2) {
-
-                    setShowModal2(false)
-                    setShowModals2(false)
-                } else {
-
-
-                    setShowModals2(true)
-                }
-            }
-            else {
-
-
-                setShowModals2(true)
-            }
-        };
-
-        if (showModal2) {
-
-
-            if (showModals2) {
-
-                document.addEventListener('mousedown', handleClickOutside);
-            } else {
-                setShowModals2(true)
-            }
-        } else {
-            if (modalRef2.current) {
-
-                document.removeEventListener('mousedown', handleClickOutside);
-                if (setShowModals2) {
-
-                    setShowModals2(false)
-                }
-            }
-        }
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [showModal2, showModals2]);
-
-    useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (modalRef3.current && !modalRef3.current.contains(event.target)) {
-                if (showModals3) {
-
-                    setShowModal3(false)
-                    setShowModals3(false)
-                } else {
-
-
-                    setShowModals3(true)
-                }
-            }
-            else {
-
-
-                setShowModals3(true)
-            }
-        };
-
-        if (showModal3) {
-
-
-            if (showModals3) {
-
-                document.addEventListener('mousedown', handleClickOutside);
-            } else {
-                setShowModals3(true)
-            }
-        } else {
-            if (modalRef3.current) {
-
-                document.removeEventListener('mousedown', handleClickOutside);
-                if (setShowModals3) {
-
-                    setShowModals3(false)
-                }
-            }
-        }
-
-        return () => {
-            document.removeEventListener('mousedown', handleClickOutside);
-        };
-    }, [showModal3, showModals3]);
+        // eslint-disable-next-line
+    }, [showModal, showModal2, showModal3]);
 
     const openModalWallet = (type) => {
         setModalWallet({ status: true, type: type })
@@ -195,64 +83,6 @@ const Home = () => {
             });
     }
 
-    function setCountdown(targetDateString) {
-        const countDownDate = new Date(targetDateString).getTime() + 10800000;
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-
-            if (distance < 0) {
-                clearInterval(intervalId);
-
-                // Set the new target date one week ahead
-                var newTargetDate = new Date(countDownDate);
-                newTargetDate.setDate(newTargetDate.getDate() + 7);
-                var newTargetDateString = newTargetDate.toISOString().slice(0, 19);
-                setCountdown(newTargetDateString);
-            } else {
-                setFullDate({
-                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-                    seconds: Math.floor((distance % (1000 * 60)) / 1000)
-                });
-                setAnime(!anime)
-            }
-        }
-
-        updateCountdown();
-        const intervalId = setInterval(updateCountdown, 1000);
-    }
-    function setCountdown2(targetDateString) {
-        const countDownDate = new Date(targetDateString).getTime();
-
-        function updateCountdown() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-
-            if (distance < 0) {
-                clearInterval(intervalId);
-
-                // Set the new target date one week ahead
-                var newTargetDate = new Date(countDownDate);
-                newTargetDate.setDate(newTargetDate.getDate() + 7);
-                var newTargetDateString = newTargetDate.toISOString().slice(0, 19);
-                setCountdown(newTargetDateString);
-            } else {
-                setFullDateEnd({
-                    days: Math.floor(distance / (1000 * 60 * 60 * 24)),
-                    hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-                    minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
-                    seconds: Math.floor((distance % (1000 * 60)) / 1000)
-                });
-            }
-        }
-        updateCountdown();
-        const intervalId = setInterval(updateCountdown, 1000);
-    }
-
-    // Функція для перекладу тексту через DeepL
     async function translateText(texts, targetLang) {
         const apiKey = "acdc58e4-982c-4baa-b802-c967a607f563";
         const params = new URLSearchParams();
@@ -278,7 +108,6 @@ const Home = () => {
         }
     }
 
-    // Функція для перекладу всіх елементів з атрибутом translate
     async function translateElements(targetLang) {
         const elements = document.querySelectorAll("[translate]");
         const textsToTranslate = [];
@@ -378,13 +207,7 @@ const Home = () => {
         return () => clearInterval(interval); // Clean up the interval on component unmount
     }, []);
 
-    useEffect(() => {
-        if (data) {
-            setCountdown(date)
-            setCountdown2('2024-08-16 14:00:00')
-        }
-        // eslint-disable-next-line
-    }, [data, date]);
+
 
     const scrollToHome = () => {
         const homeElement = document.getElementById('tradeForm');
@@ -400,46 +223,26 @@ const Home = () => {
             <div className="z-[1] flex max-lg:flex-col layout text-white justify-between mx-auto lg:pt-[70px] pt-[40px] lg:h-full max-lg:pb-[0px] max-lg:relative max-lg:z-[1]">
                 <div className="lg:mr-10 lg:flex-1 max-w-[780px] text-left  max-lg:text-center max-lg:h-[680px]" style={{ opacity: 1, transform: 'translateX(0%) translateZ(0px)' }}>
                     <p className="font-ebGaramond text-[48px] italic font-medium max-lg:text-[24px] max-lg:leading-8">Invest in Glamour, Invest in Poodlana</p>
-                    <h4 className="text-[96px] font-bold uppercase leading-none text-left mt-3 max-lg:text-[52px] md:text-center">The Hermès of Crypto</h4>
+                    <h4 className="text-[96px] font-bold uppercase leading-none  mt-3 max-lg:text-[52px] md:text-center">The Hermès of Crypto</h4>
                     <div className="flex mt-6 max-lg:justify-center">
-                        <aa className="!px-[30px] tracking-wider btn max-lg:hidden" href="https://t.me/poodlana" target="_blank" rel="noopener noreferrer">
+                        <span className="!px-[30px] tracking-wider btn max-lg:hidden" href="https://t.me/poodlana" target="_blank" rel="noopener noreferrer">
                             <img alt="wallet" loading="lazy" width="19" height="16" decoding="async" className="mr-2 max-lg:hidden" style={{ color: 'transparent' }}
                                 src={plane} />
                             Join community
-                        </aa>
+                        </span>
                     </div>
-                    <div className="text-[18px] font-poppins font-[700] uppercase text-left tracking-wider mt-[30px] max-md:mt-[-15px] md:text-center">PRESALE ENDS IN:</div>
+                    <div className="text-[18px] font-poppins font-[700] uppercase  tracking-wider mt-[30px] max-md:mt-[-15px] md:text-center">PRESALE ENDS IN:</div>
                     <div className="mt-[10px] max-md:mt-[0px] w-full max-md:flex max-md:justify-center">
-                        <div className="flex text-[40px] max-md:w-[80vw] max-md:text-[35px] gap-[20px] leading-none max-lg:mt-2 font-libreBodoni items-center">
-                            <div className="max-md:w-1/4 max-md:items-center text-center items-end flex justify-center gap-1 max-md:flex-col">
-                                <div className="flex-grow flex justify-center">{fullDateEnd.days}</div>
-                                <span className="text-white/70 font-poppins max-md:text-white text-sm font-light uppercase italic">days</span>
-                            </div>
-                            <span className="text-white/35 font-poppins text-sm font-light lg:hidden">/</span>
-                            <div className="max-md:w-1/4 max-md:items-center items-end text-center flex justify-center gap-1 max-md:flex-col">
-                                <div className="flex-grow font-libreBodoni flex justify-center">{fullDateEnd.hours}</div>
-                                <span className="text-white/70 font-poppins max-md:text-white text-sm font-light uppercase italic">hrs</span>
-                            </div>
-                            <span className="text-white/35 font-poppins text-sm font-light lg:hidden">/</span>
-                            <div className="max-md:w-1/4 max-md:items-center text-center flex items-end justify-center gap-1 max-md:flex-col">
-                                <div className="flex-grow font-libreBodoni flex justify-center">{fullDateEnd.minutes}</div>
-                                <span className="text-white/70 max-md:text-white font-poppins text-sm font-light uppercase italic">mins</span>
-                            </div>
-                            <span className="text-white/35 font-poppins text-sm font-light lg:hidden">/</span>
-                            <div className="max-md:w-1/4 max-md:items-center text-center flex items-end justify-center gap-1 max-md:flex-col">
-                                <div className="flex-grow font-libreBodoni flex justify-center">{fullDateEnd.seconds}</div>
-                                <span className="text-white/70 font-poppins max-md:text-white text-sm font-light uppercase italic">secs</span>
-                            </div>
-                        </div>
+                        <Tmr targetTime={new Date('2024-08-16 14:00:00').getTime()} x={true} />
                     </div>
-                    <div className="text-[18px] font-poppins font-[700] uppercase text-left tracking-wider mt-[15px] max-md:hidden">FIRST EXCHANGE LISTING:</div>
+                    <div className="text-[18px] font-poppins font-[700] uppercase  tracking-wider mt-[15px] max-md:hidden">FIRST EXCHANGE LISTING:</div>
                     <div className="text-[24px] font-libreBodoni italic text-white/90 max-md:hidden uppercase tracking-wider">12:00 PM UTC August 16</div>
                     <div className="text-[15px] font-libreBodoni italic text-white/90 max-md:hidden uppercase tracking-wider">60 minutes after presale end</div>
                     <div className="text-[15px] font-libreBodoni italic text-white/90 max-md:hidden uppercase tracking-wider">LISTING PRICE $0.060</div>
                     <div className="md:hidden flex w-full justify-center mt-[200px]">
-                        <aa className="content-center active">
+                        <span className="content-center active">
                             <button onClick={scrollToHome} className="!px-[50px] btn max-lg:text-[18px] lg:hidden transition-all ease-linear duration-500 tracking-[3px]" type="button" style={style}>Purchase</button>
-                        </aa>
+                        </span>
                     </div>
                 </div>
                 <div style={{ opacity: 1, transform: 'translateX(0%) translateZ(0px)' }}>
@@ -460,26 +263,7 @@ const Home = () => {
                                 <div className="text-center uppercase font-semibold italic text-[20px] max-md:text-[16px]">
                                     Buy in before price increases!
                                 </div>
-                                <div className="flex flex-col">
-                                    <div className="flex justify-center w-full text-[40px] max-md:text-[35px] leading-none max-lg:mt-2">
-                                        <Timer fullDate={fullDate.days} />
-
-                                        <span className="justify-self-end text-white/35 font-poppins text-sm font-light self-end">/</span>
-                                        <Timer fullDate={fullDate.hours} />
-                                        <span className="justify-self-end text-white/35 font-poppins text-sm font-light self-end">/</span>
-                                        <Timer fullDate={fullDate.minutes} />
-                                        <span className="justify-self-end text-white/35 font-poppins text-sm font-light self-end">/</span>
-                                        <Timer fullDate={fullDate.seconds} s={true} />
-
-
-                                    </div>
-                                    <div className="flex w-full text-sm font-poppins italic font-light leading-none">
-                                        <div className="w-1/4 text-center">DAYS</div>
-                                        <div className="w-1/4 text-center">HRS</div>
-                                        <div className="w-1/4 text-center">MINS</div>
-                                        <div className="w-1/4 text-center">SECS</div>
-                                    </div>
-                                </div>
+                                {date && <Tmr targetTime={new Date(date).getTime()} />}
                             </div>
                             <div className="flex flex-col p-6 max-md:p-5">
                                 <div className="flex justify-between items-center w-full text-md max-md:text-[14px] font-ebGaramond">

@@ -26,180 +26,180 @@ const Partners = () => {
             <div className="z-[16]" style={{ opacity: 1, transform: 'none' }}><div className="overflow-hidden">
                 <span className="hidden">2</span><div className="flex gap-[48px] max-md:gap-[12px] items-center flex-row" style={animationStyle}>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://0xzx.com/2024070800004592297.html" >
+                        <span href="https://0xzx.com/2024070800004592297.html" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="108" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={zx}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="108" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={zx}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://coinpedia.org/sponsored/welcome-poodlana-the-stylish-new-meme-coin-on-solana/" >
+                        <span href="https://coinpedia.org/sponsored/welcome-poodlana-the-stylish-new-meme-coin-on-solana/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="191" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={coinPedia}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="191" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={coinPedia}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://crypto.news/poodlana-generates-excitement-across-asia-ahead-of-launch/" >
+                        <span href="https://crypto.news/poodlana-generates-excitement-across-asia-ahead-of-launch/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptonews}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptonews}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia-poodlana-presale-launches-in-under-24-hours" >
+                        <span href="https://cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia-poodlana-presale-launches-in-under-24-hours" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cointelegraph}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cointelegraph}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://www.cryptopolitan.com/welcome-to-poodlana-the-hot-meme-coin-with-a-fashion-twist/" >
+                        <span href="https://www.cryptopolitan.com/welcome-to-poodlana-the-hot-meme-coin-with-a-fashion-twist/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="172" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptopolitan}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="172" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptopolitan}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://beincrypto.com/poodlana-goes-viral-in-asia/" >
+                        <span href="https://beincrypto.com/poodlana-goes-viral-in-asia/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="153" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={beincrypto}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="153" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={beincrypto}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="" >
+                        <span href="" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="245" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={tokenpost}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="245" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={tokenpost}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://jp.cointelegraph.com/press-releases/the-emergence-of-pudrana-trending-tokens-you-need-to-know" >
+                        <span href="https://jp.cointelegraph.com/press-releases/the-emergence-of-pudrana-trending-tokens-you-need-to-know" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphJP}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphJP}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://kr.cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia" >
+                        <span href="https://kr.cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://u.today/press-releases/under-24-hours-to-go-the-world-awaits-poodlanas-grand-launch" >
+                        <span href="https://u.today/press-releases/under-24-hours-to-go-the-world-awaits-poodlanas-grand-launch" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="178" height="40" decoding="async" data-nimg="1" className="mr-[25px]" style={{ color: 'transparent' }} src={utoday}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="178" height="40" decoding="async" data-nimg="1" className="mr-[25px]" style={{ color: 'transparent' }} src={utoday}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://www.wallstreet-online.de/nachricht/18249227-pudel-heissesten-hundetrend-kryptowelt" >
+                        <span href="https://www.wallstreet-online.de/nachricht/18249227-pudel-heissesten-hundetrend-kryptowelt" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="309" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={wallstreet}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="309" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={wallstreet}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://coingape.com/sponsored/8-days-left-poodlanas-launch-is-the-talk-of-the-town/" >
+                        <span href="https://coingape.com/sponsored/8-days-left-poodlanas-launch-is-the-talk-of-the-town/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="145" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={coinGape}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="145" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={coinGape}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://nextmoney.jp/?p=67168" >
+                        <span href="https://nextmoney.jp/?p=67168" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="194" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={next}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="194" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={next}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://ambcrypto.com/24-hour-countdown-asia-awaits-poodlanas-launch/" >
+                        <span href="https://ambcrypto.com/24-hour-countdown-asia-awaits-poodlanas-launch/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="169" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={amb}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="169" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={amb}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://www.blockmedia.co.kr/archives/611259#google_vignette" >
+                        <span href="https://www.blockmedia.co.kr/archives/611259#google_vignette" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="181" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={block}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="181" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={block}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://0xzx.com/2024070800004592297.html" ><div className="h-[120px] flex-center">
-                            <img alt="businessInsider" loading="lazy" width="108" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={zx}></img></div></aa></div>
+                        <span href="https://0xzx.com/2024070800004592297.html" ><div className="h-[120px] flex-center">
+                            <img alt="businessInsider" loading="lazy" width="108" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={zx}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://coinpedia.org/sponsored/welcome-poodlana-the-stylish-new-meme-coin-on-solana/" >
+                        <span href="https://coinpedia.org/sponsored/welcome-poodlana-the-stylish-new-meme-coin-on-solana/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="191" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={coinPedia}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="191" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={coinPedia}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://crypto.news/poodlana-generates-excitement-across-asia-ahead-of-launch/" >
+                        <span href="https://crypto.news/poodlana-generates-excitement-across-asia-ahead-of-launch/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptonews}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptonews}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia-poodlana-presale-launches-in-under-24-hours" >
+                        <span href="https://cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia-poodlana-presale-launches-in-under-24-hours" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://www.cryptopolitan.com/welcome-to-poodlana-the-hot-meme-coin-with-a-fashion-twist/" >
+                        <span href="https://www.cryptopolitan.com/welcome-to-poodlana-the-hot-meme-coin-with-a-fashion-twist/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="172" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptopolitan}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="172" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptopolitan}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://beincrypto.com/poodlana-goes-viral-in-asia/" >
+                        <span href="https://beincrypto.com/poodlana-goes-viral-in-asia/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="153" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={beincrypto}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="153" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={beincrypto}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="" >
+                        <span href="" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="245" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={tokenpost}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="245" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={tokenpost}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://jp.cointelegraph.com/press-releases/the-emergence-of-pudrana-trending-tokens-you-need-to-know" >
+                        <span href="https://jp.cointelegraph.com/press-releases/the-emergence-of-pudrana-trending-tokens-you-need-to-know" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphJP}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphJP}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://kr.cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia" >
+                        <span href="https://kr.cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://u.today/press-releases/under-24-hours-to-go-the-world-awaits-poodlanas-grand-launch" >
+                        <span href="https://u.today/press-releases/under-24-hours-to-go-the-world-awaits-poodlanas-grand-launch" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="178" height="40" decoding="async" data-nimg="1" className="mr-[25px]" style={{ color: 'transparent' }} src={utoday}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="178" height="40" decoding="async" data-nimg="1" className="mr-[25px]" style={{ color: 'transparent' }} src={utoday}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://www.wallstreet-online.de/nachricht/18249227-pudel-heissesten-hundetrend-kryptowelt" >
+                        <span href="https://www.wallstreet-online.de/nachricht/18249227-pudel-heissesten-hundetrend-kryptowelt" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="309" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={wallstreet}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="309" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={wallstreet}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://coingape.com/sponsored/8-days-left-poodlanas-launch-is-the-talk-of-the-town/" >
+                        <span href="https://coingape.com/sponsored/8-days-left-poodlanas-launch-is-the-talk-of-the-town/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="145" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={coinGape}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="145" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={coinGape}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://nextmoney.jp/?p=67168" >
+                        <span href="https://nextmoney.jp/?p=67168" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="194" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={next}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="194" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={next}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://ambcrypto.com/24-hour-countdown-asia-awaits-poodlanas-launch/" >
+                        <span href="https://ambcrypto.com/24-hour-countdown-asia-awaits-poodlanas-launch/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="169" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={amb}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="169" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={amb}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://www.blockmedia.co.kr/archives/611259#google_vignette" >
+                        <span href="https://www.blockmedia.co.kr/archives/611259#google_vignette" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="181" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={block}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="181" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={block}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://0xzx.com/2024070800004592297.html" >
+                        <span href="https://0xzx.com/2024070800004592297.html" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="108" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={zx}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="108" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={zx}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://coinpedia.org/sponsored/welcome-poodlana-the-stylish-new-meme-coin-on-solana/" >
+                        <span href="https://coinpedia.org/sponsored/welcome-poodlana-the-stylish-new-meme-coin-on-solana/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="191" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={coinPedia}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="191" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={coinPedia}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://crypto.news/poodlana-generates-excitement-across-asia-ahead-of-launch/" >
+                        <span href="https://crypto.news/poodlana-generates-excitement-across-asia-ahead-of-launch/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptonews}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptonews}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia-poodlana-presale-launches-in-under-24-hours" >
+                        <span href="https://cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia-poodlana-presale-launches-in-under-24-hours" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="200" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://www.cryptopolitan.com/welcome-to-poodlana-the-hot-meme-coin-with-a-fashion-twist/" >
+                        <span href="https://www.cryptopolitan.com/welcome-to-poodlana-the-hot-meme-coin-with-a-fashion-twist/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="businessInsider" loading="lazy" width="172" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptopolitan}></img></div></aa></div>
+                                <img alt="businessInsider" loading="lazy" width="172" height="40" decoding="async" data-nimg="1" style={{ color: 'transparent' }} src={cryptopolitan}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://beincrypto.com/poodlana-goes-viral-in-asia/" >
+                        <span href="https://beincrypto.com/poodlana-goes-viral-in-asia/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="153" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={beincrypto}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="153" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={beincrypto}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="" ><div className="h-[120px] flex-center">
-                            <img alt="beincrypto" loading="lazy" width="245" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={tokenpost}></img></div></aa></div>
+                        <span href="" ><div className="h-[120px] flex-center">
+                            <img alt="beincrypto" loading="lazy" width="245" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={tokenpost}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://jp.cointelegraph.com/press-releases/the-emergence-of-pudrana-trending-tokens-you-need-to-know" >
+                        <span href="https://jp.cointelegraph.com/press-releases/the-emergence-of-pudrana-trending-tokens-you-need-to-know" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphJP}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphJP}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://kr.cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia" >
-                            <div className="h-[120px] flex-center"><img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></aa></div>
+                        <span href="https://kr.cointelegraph.com/press-releases/new-meme-coin-going-viral-in-asia" >
+                            <div className="h-[120px] flex-center"><img alt="beincrypto" loading="lazy" width="170" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={cointelegraphKR}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://u.today/press-releases/under-24-hours-to-go-the-world-awaits-poodlanas-grand-launch" >
+                        <span href="https://u.today/press-releases/under-24-hours-to-go-the-world-awaits-poodlanas-grand-launch" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="178" height="40" decoding="async" data-nimg="1" className="mr-[25px]" style={{ color: 'transparent' }} src={utoday}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="178" height="40" decoding="async" data-nimg="1" className="mr-[25px]" style={{ color: 'transparent' }} src={utoday}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://www.wallstreet-online.de/nachricht/18249227-pudel-heissesten-hundetrend-kryptowelt" >
-                            <div className="h-[120px] flex-center"><img alt="beincrypto" loading="lazy" width="309" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={wallstreet}></img></div></aa></div>
+                        <span href="https://www.wallstreet-online.de/nachricht/18249227-pudel-heissesten-hundetrend-kryptowelt" >
+                            <div className="h-[120px] flex-center"><img alt="beincrypto" loading="lazy" width="309" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={wallstreet}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://coingape.com/sponsored/8-days-left-poodlanas-launch-is-the-talk-of-the-town/" >
+                        <span href="https://coingape.com/sponsored/8-days-left-poodlanas-launch-is-the-talk-of-the-town/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="145" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={coinGape}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="145" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={coinGape}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://nextmoney.jp/?p=67168" ><div className="h-[120px] flex-center">
-                            <img alt="beincrypto" loading="lazy" width="194" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={next}></img></div></aa></div>
+                        <span href="https://nextmoney.jp/?p=67168" ><div className="h-[120px] flex-center">
+                            <img alt="beincrypto" loading="lazy" width="194" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={next}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://ambcrypto.com/24-hour-countdown-asia-awaits-poodlanas-launch/" >
+                        <span href="https://ambcrypto.com/24-hour-countdown-asia-awaits-poodlanas-launch/" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="169" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={amb}></img></div></aa></div>
+                                <img alt="beincrypto" loading="lazy" width="169" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={amb}></img></div></span></div>
                     <div style={{ width: '300px' }} className="tracking-widest w-full">
-                        <aa href="https://www.blockmedia.co.kr/archives/611259#google_vignette" >
+                        <span href="https://www.blockmedia.co.kr/archives/611259#google_vignette" >
                             <div className="h-[120px] flex-center">
-                                <img alt="beincrypto" loading="lazy" width="181" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={block}></img></div></aa></div></div></div></div></div>
+                                <img alt="beincrypto" loading="lazy" width="181" height="40" decoding="async" data-nimg="1" className="" style={{ color: 'transparent' }} src={block}></img></div></span></div></div></div></div></div>
     );
 };
 

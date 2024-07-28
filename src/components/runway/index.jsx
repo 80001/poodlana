@@ -21,38 +21,24 @@ const Runway = () => {
     }, [width]);
 
     useEffect(() => {
-        if (width <= 1000) {
-            if (scrollPosition >= 3650 && scrollPosition <= 13840) {
-                const maxTranslateX = 3500;
-                const minScroll = 3650;
-                const maxScroll = 13840;
-                const scrollRange = maxScroll - minScroll;
-                const translateXRange = maxTranslateX;
+        const isMobile = width <= 1000;
+        const mobileScrollRange = { min: 3650, max: 13840 };
+        const desktopScrollRange = { min: 5080, max: 13840 };
+        const maxTranslateX = 3500;
+        const currentScrollRange = isMobile ? mobileScrollRange : desktopScrollRange;
 
-                // Linear mapping
-                const y = ((scrollPosition - minScroll) / scrollRange) * translateXRange;
-                setStyle({ transform: `translateX(-${y}px) translateZ(0px)` });
-            } else if (scrollPosition >= 13840) {
-                setStyle({ transform: `translateX(-3500px) translateZ(0px)` })
-            }
+        if (scrollPosition >= currentScrollRange.min && scrollPosition <= currentScrollRange.max) {
+            const scrollRange = currentScrollRange.max - currentScrollRange.min;
+            const y = ((scrollPosition - currentScrollRange.min) / scrollRange) * maxTranslateX;
+            setStyle({ transform: `translateX(-${y}px) translateZ(0px)` });
+        } else if (scrollPosition > currentScrollRange.max) {
+            setStyle({ transform: `translateX(-${maxTranslateX}px) translateZ(0px)` });
         } else {
-            if (scrollPosition >= 5080 && scrollPosition <= 13840) {
-                const maxTranslateX = 3500;
-                const minScroll = 5080;
-                const maxScroll = 13840;
-                const scrollRange = maxScroll - minScroll;
-                const translateXRange = maxTranslateX;
-
-                // Linear mapping
-                const y = ((scrollPosition - minScroll) / scrollRange) * translateXRange;
-                setStyle({ transform: `translateX(-${y}px) translateZ(0px)` });
-            } else if (scrollPosition >= 13840) {
-                setStyle({ transform: `translateX(-3500px) translateZ(0px)` })
-            } else {
-                setStyle({ transform: 'none' });
-            }
+            setStyle({ transform: 'none' });
         }
     }, [scrollPosition, width]);
+
+
 
     return (
         <div id="runway" className="md:h-[9440.5px] overflow-clip overflow-hidden overflow-x-auto">
@@ -184,7 +170,7 @@ const Runway = () => {
                         <div className="relative">
                             <div className="flex flex-col">
                                 <div className="flex flex-col mt-[48px] max-md:mt-0">
-                                    <div className="flex-1 my-[45px] md:text-left" style={{ opacity: 0.932076 }}>
+                                    <div className="flex-1 my-[45px] md:text-left" style={{ opacity: 1 }}>
                                         <h3 className="font-medium text-[28px] leading-[42px] uppercase" style={{ color: 'rgb(255, 113, 13)' }}>
                                             look1 | The Grand Entrance
                                         </h3>
@@ -204,7 +190,7 @@ const Runway = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="flex-1 my-[45px]" style={{ opacity: 0.4 }}>
+                                    <div className="flex-1 my-[45px]" style={{ opacity: 1 }}>
                                         <h3 className="font-medium text-[28px] leading-[42px] uppercase" style={{ color: 'rgb(243, 104, 112)' }}>
                                             look2 | The Fabulous Launch(60 mins after presale)
                                         </h3>
@@ -223,7 +209,7 @@ const Runway = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="flex-1 my-[45px]" style={{ opacity: 0.4 }}>
+                                    <div className="flex-1 my-[45px]" style={{ opacity: 1 }}>
                                         <h3 className="font-medium text-[28px] leading-[42px] uppercase" style={{ color: 'rgb(209, 200, 255)' }}>
                                             look3 | Glamorous Growth
                                         </h3>
@@ -242,7 +228,7 @@ const Runway = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="flex-1 my-[45px]" style={{ opacity: 0.4 }}>
+                                    <div className="flex-1 my-[45px]" style={{ opacity: 1 }}>
                                         <h3 className="font-medium text-[28px] leading-[42px] uppercase" style={{ color: 'rgb(132, 203, 255)' }}>
                                             look4 | Innovation and Expansion
                                         </h3>
@@ -261,7 +247,7 @@ const Runway = () => {
                                             </li>
                                         </ul>
                                     </div>
-                                    <div className="flex-1 my-[45px]" style={{ opacity: 0.4 }}>
+                                    <div className="flex-1 my-[45px]" style={{ opacity: 1 }}>
                                         <h3 className="font-medium text-[28px] leading-[42px] uppercase" style={{ color: 'rgb(143, 237, 132)' }}>
                                             look5 | The Long-Term Vision
                                         </h3>
