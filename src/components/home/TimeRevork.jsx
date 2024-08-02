@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Countdown from "./Countdown";
 import TimeSpliter from "./TimeSpliter";
 
-const Tmr = ({ targetTime = new Date("2024-07-29").getTime(), x = false }) => {
+const Tmr = ({ targetTime = new Date("2024-09-29").getTime(), x = false }) => {
+
     const [currentTime, setCurrentTime] = useState(Date.now());
 
     const timeBetween = targetTime - currentTime;

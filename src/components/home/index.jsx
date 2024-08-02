@@ -76,100 +76,17 @@ const Home = () => {
             .then((response) => response.json())
             .then((data) => {
                 setData(data.result.data)
-                setDate(data.result.data.nextIncreaseTime)
+                if (data.result.data.nextIncreaseTime === '2024-07-29 11:00') {
+                    setDate('2024-08-29 11:00');
+                } else {
+                    setDate(data.result.data.nextIncreaseTime)
+                }
             })
             .catch((error) => {
                 console.error("Error fetching data:", error);
             });
     }
 
-    async function translateText(texts, targetLang) {
-        const apiKey = "acdc58e4-982c-4baa-b802-c967a607f563";
-        const params = new URLSearchParams();
-        params.append("auth_key", apiKey);
-        texts.forEach((text) => params.append("text", text));
-        params.append("target_lang", targetLang);
-        params.append("preserve_formatting", true);
-
-        const response = await fetch("https://api.deepl.com/v2/translate", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/x-www-form-urlencoded",
-            },
-            body: params.toString(),
-        });
-
-        const data = await response.json();
-
-        if (data && data.translations) {
-            return data.translations.map((translation) => translation.text);
-        } else {
-            throw new Error("Translation failed");
-        }
-    }
-
-    async function translateElements(targetLang) {
-        const elements = document.querySelectorAll("[translate]");
-        const textsToTranslate = [];
-        const originalTexts = [];
-
-        for (let element of elements) {
-            const originalText = element.getAttribute("data-original-text");
-            if (targetLang === "en") {
-                // Повертаємо оригінальний текст
-                if (originalText) {
-                    element.textContent = originalText;
-                }
-            } else {
-                // Зберігаємо оригінальний текст, якщо ще не збережено
-                if (!originalText) {
-                    element.setAttribute("data-original-text", element.textContent.trim());
-                }
-                const textToTranslate = element.textContent.trim();
-                if (textToTranslate) {
-                    originalTexts.push(originalText || textToTranslate);
-                    textsToTranslate.push(textToTranslate);
-                }
-            }
-        }
-
-        if (textsToTranslate.length > 0) {
-            try {
-                const translatedTexts = await translateText(textsToTranslate, targetLang);
-                elements.forEach((element, index) => {
-                    if (targetLang !== "en") {
-                        element.textContent = translatedTexts[index];
-                    }
-                });
-            } catch (error) {
-                console.error("Translation error:", error.message);
-            }
-        }
-    }
-    // eslint-disable-next-line
-    function getValidLanguageCode(code) {
-        let returnValue = "en"; // Default value
-
-        if (code === "cz") {
-            translateElements("cs");
-            returnValue = "cs";
-        } else if (code === "kr") {
-            translateElements("ko");
-            returnValue = "ko";
-        } else if (code === "ch") {
-            translateElements("zh");
-            returnValue = "zh";
-        } else {
-            translateElements(code);
-            // For the default case, `code` is used directly
-            returnValue = code;
-        }
-
-        // Set cookie with the return value
-        document.cookie = `lang=${returnValue}; path=/`;
-
-        return returnValue;
-    }
     useEffect(() => {
         const colors = [
             { backgroundColor: 'rgb(169, 197, 0)' },
@@ -233,7 +150,7 @@ const Home = () => {
                     </div>
                     <div className="text-[18px] font-poppins font-[700] uppercase  tracking-wider mt-[30px] max-md:mt-[-15px] md:text-center">PRESALE ENDS IN:</div>
                     <div className="mt-[10px] max-md:mt-[0px] w-full max-md:flex max-md:justify-center">
-                        <Tmr targetTime={new Date('2024-08-16 14:00:00').getTime()} x={true} />
+                        <Tmr targetTime={new Date('2024-08-30 14:00:00').getTime()} x={true} />
                     </div>
                     <div className="text-[18px] font-poppins font-[700] uppercase  tracking-wider mt-[15px] max-md:hidden">FIRST EXCHANGE LISTING:</div>
                     <div className="text-[24px] font-libreBodoni italic text-white/90 max-md:hidden uppercase tracking-wider">12:00 PM UTC August 16</div>

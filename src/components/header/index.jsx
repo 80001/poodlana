@@ -52,7 +52,6 @@ const Header = () => {
     const modalRef3 = useRef();
     const { setModalWallet } = useContext(Context)
     const [lang, setLang] = useState('en')
-    console.log(style)
     const modals = [
         { show: showModal, setShow: setShowModal, ref: modalRef },
         { show: showModal2, setShow: setShowModal2, ref: modalRef2 },
